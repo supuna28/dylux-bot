@@ -59,7 +59,7 @@ La instalación es bastante simple, siga los pasos a continuación en la Aplicac
 • pkg install nodejs
 • git clone https://github.com/FG98F/dylux-bot
 • cd dylux-bot
-• bash install.sh
+• npm i
 • npm start
 ```
 Cuando aparezca el QR, escanéelo usando la aplicación WhatsApp que se usará para bot
