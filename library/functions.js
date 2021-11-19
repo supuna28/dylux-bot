@@ -6,7 +6,7 @@ const fs = require('fs');
 const { spawn } = require("child_process");
 
 /** -- función
-* detector de  link
+* detector de  link 
 */
 const isUrl = (url) => {
        return url.match(
