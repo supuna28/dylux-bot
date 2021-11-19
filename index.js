@@ -9,6 +9,7 @@ const {
   mentionedJid
 } = require("@adiwajshing/baileys");
 
+
 // functions node modules
 const speed = require('performance-now');
 const moment = require("moment-timezone");
@@ -24,7 +25,9 @@ const threshold = 0.72;
 const fgx = require('./result/index');
 const package = require('./package.json');
 const yts = require('yt-search');
-const gls = require('google-it')
+const gls = require('google-it');
+const FormData = require('form-data');
+const axios = require("axios");
 //-- library
 const simple = require('./whatsapp/connecting');
 const { fetchJson, fakeText, getBuffer } = require('./library/fetcher');
@@ -34,6 +37,7 @@ const {
   modStick,
   h2k, 
   isUrl,
+  isLinkyt,
   pickRandom,
   generateMessageID, 
   getGroupAdmins,
@@ -47,7 +51,8 @@ const {
   time,
   WIB,
   WITA,
-  WIT
+  WIT, 
+  formatDate 
 } = require('./library/functions');
 
 // functions
@@ -82,6 +87,9 @@ const {
   addChatbot,
   delChatbot,
   cekChatbot,
+  cekVoiceCommand,
+  addVoiceCommand,
+  delVoiceCommand,
   addAfk,
   delAfk,
   cekAfk,
@@ -156,6 +164,7 @@ let isAuthor = st.author;
 let isPackname = st.packname; 
 let isWm = st.wm; 
 let isTotalcmd = st.totalcommand; 
+let hujanapi = st.hujanApi
 
 // -- thumbnail
 let thumbfg = fs.readFileSync('./temp/fg.jpg'); 
@@ -179,7 +188,7 @@ module.exports = Fg = async (Fg, mek) => {
     mek = mek.messages.all()[0];
     if (!mek.message) return;
     //--Bot self
-   //if(mek.key.fromMe) return; // Eliminalo para que el Bot sea self
+   if(mek.key.fromMe) return; // Eliminalo para que el Bot sea self
    
     if (mek.key && mek.key.remoteJid == 'status@broadcast') return;
     mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
@@ -256,6 +265,7 @@ module.exports = Fg = async (Fg, mek) => {
      let isLevel = cekLevel(sender);
      let isPremium = cekPremium(sender);
      let isChatbot = cekChatbot(sender);
+     let isVoiceCommand = cekVoiceCommand(sender);
      let isBanned = cekBanned(sender);
      let isAfk = cekAfk(sender);
      let isAfkTime = cekAfkTime(sender);
@@ -327,19 +337,19 @@ Fg.on('CB:action,,battery', json => {
 // detected quoted 
      const isMedia = type === "imageMessage" || type === "videoMessage";
      const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage');
- 	 	 const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage');
-		 const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage');
-		 const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage');
-		 const isQuotedDocument = type === 'extendedTextMessage' && content.includes('documentMessage');
-	   const isQuotedLocation = type === 'extendedTextMessage' && content.includes('locationMessage');
-		 const isQuotedextendedText = type === 'extendedTextMessage' && content.includes('extendedTextMessage');
+ 	const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage');
+     const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage');
+     const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage');
+	 const isQuotedDocument = type === 'extendedTextMessage' && content.includes('documentMessage');
+	 const isQuotedLocation = type === 'extendedTextMessage' && content.includes('locationMessage');
+	 const isQuotedextendedText = type === 'extendedTextMessage' && content.includes('extendedTextMessage');
 
 
 // comando de registro de la consola cuando está en un chat privado
     if (!isGroup && isCmd) {
       console.log("‣", bgcolor('Cmd en CHAT PRIVADO', 'magenta'));
-      console.log(" From :", color(pushname, "yellow"), "Tanggal :", bgcolor(tanggal, 'grey'));
-      console.log(" Command :", color(command.toUpperCase(), "orange"), "MessageType :", bgcolor(type, "orange"));
+      console.log(" De :", color(pushname, "yellow"), "Fecha :", bgcolor(tanggal, 'grey'));
+      console.log(" Cmd :", color(command.toUpperCase(), "orange"), "MessageType :", bgcolor(type, "orange"));
     }
     
 // comando de registro de la consola cuando está en el grupo
@@ -363,6 +373,16 @@ Fg.on('CB:action,,battery', json => {
     if (isCmd && !isOwner && !isBot) msgFilter.addFilter(from*/
 
 
+let infoMSG = JSON.parse(fs.readFileSync('./database/msg.data.json'))
+    infoMSG.push(JSON.parse(JSON.stringify(mek)))
+    fs.writeFileSync('./database/msg.data.json', JSON.stringify(infoMSG, null, 2))
+    const urutan_pesan = infoMSG.length
+    if (urutan_pesan === 5000) {
+    infoMSG.splice(0, 4300)
+    fs.writeFileSync('./database/msg.data.json', JSON.stringify(infoMSG, null, 2))
+    }
+    
+    
 // auto respon
 /*Dbot = ['@'+Fg.user.jid.split('@')[0]]
 for ( var L of Dbot){
@@ -1142,7 +1162,7 @@ break
 	case 'ytmp3':
 	case 'fgmp3':
    if(!value) return m.reply(msg.nolink('youtube'));
-   if(isUrl(value) && !value.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)) return m.reply('Link invalido');
+   if(!isLinkyt(value)) return m.reply('⚠️ Link invalido');
    m.reply(msg.wait)
    resp = await fgx.yta(value)
    buff = await getBuffer(resp.link)
@@ -1162,7 +1182,7 @@ break
 	case 'ytmp4': 
 	case 'fgmp4': 
    if(!value) return m.reply(msg.nolink('youtube'));
-   if(isUrl(value) && !value.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)) return m.reply('Link invalido');
+   if(!isLinkyt(value)) return m.reply('⚠️ Link invalido');
    m.reply(msg.wait)
    resv = await fgx.ytv(value)
    buff = await getBuffer(resv.link)
@@ -1587,6 +1607,23 @@ Fg.groupSettingChange(from, GroupSettingChange.messageSend, true)
     }
     break 
     
+    case 'voicecommand':
+    if(!isPremium && !isOwner) return m.reply(msg.premium)
+   // if(isGroup) return m.reply(msg.private)
+    if(!value) return m.reply(msg.OnorOff)
+    if (value.toLowerCase() === "on") {
+      if(isVoiceCommand === true ) return m.reply(msg.Thison(command.toUpperCase()))
+      await addVoiceCommand(sender)
+      m.reply(msg.done)
+    } else if (value.toLowerCase() === "off") {
+      if(isVoiceCommand === false ) return m.reply(msg.Thisoff(command.toUpperCase()))
+      await delVoiceCommand(sender)
+      m.reply(msg.done)
+    } else {
+      m.reply(msg.OnorOff)
+    }
+    break
+    
 
   case 'q': 
     if (!m.quoted) return m.reply(msg.reply)
@@ -1616,7 +1653,7 @@ Fg.groupSettingChange(from, GroupSettingChange.messageSend, true)
 ▢ *🔖 ${msg.nme}:* ${pushname}
 ▢ *📇 Info:* ${about}
 ▢ *🌎 ${msg.idiom}:* ${cekBahasa(who)}
-▢ *⚠️ ${msg.wrn}* : ${cekWarn(who)}
+▢ *⚠️ ${msg.wrn}* : ${cekWarn(who)}/3
 ▢ *⭐ Premium* : ${Prema}
 ▢ *🆙 ${msg.lvl}* : ${cekLevel(who)}
 ▢ *💰Coins* : ${cekPoin(who)} 
@@ -2049,10 +2086,6 @@ case 'bot':
         }
       }
     }
-    
-
-
-
 
 // usuario Afk
 let jids = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.sender] : [])])]
@@ -2064,7 +2097,55 @@ let jids = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.send
         return m.reply(msg.inAfk(isOnAfkReason, isOnAfkTime))
       }
   }
+  
+  //--
+    if (isVoiceCommand && type === "audioMessage"){
+   let int
+    let infoMSG = JSON.parse(fs.readFileSync('./database/msg.data.json'))
+    for (let i = 0; i < infoMSG.length; i++){
+    const dataInfo = infoMSG[i]
+    const type = Object.keys(infoMSG[i].messageTimestamp)
+    const timestamp = infoMSG[i].messageTimestamp
+    int = {
+    no : i,
+    type: type,
+    timestamp: timestamp,
+    data: dataInfo 
+    }
+    }
+    const file = await Fg.downloadAndSaveMediaMessage(int.data)
+    const stream = fs.createReadStream(file);
+    const form = new FormData();
+    form.append('audio', stream);
+    const UrL = await requests('http://hujanapi.xyz/api/stt?apikey=' + hujanapi, { method: 'POST', body: form })
+    const ret =  await UrL.json()
+    const voiceMsg = ret.result ? ret.result : 'Tidak terdeteksi'
+    m.reply('Reading Voicee : ' + voiceMsg)
+    const VoiceCommand = voiceMsg.trim().split(/ +/).shift().toLowerCase();
+    const argsVn = voiceMsg.trim().split(/ +/).slice(1);
+    const valueVn = argsVn.join(' ');
     
+    switch(VoiceCommand) {
+    	
+    case 'play': 
+   if (!valueVn) return
+   url = await yts(valueVn);
+   linkp = url.all 
+   if(!linkp) return ('Error')
+ // img = await getBuffer(linkp[0].image)
+ img = await (await fetch('https://i.ibb.co/CnHx2Fr/fgmy.jpg')).buffer()
+   music = `≡ *FG MUSIC*
+┌──────────────
+▢ *${msg.titlp}*  : ${linkp[0].title}
+▢ *${msg.timp}* : ${linkp[0].timestamp}
+▢ *${msg.viep}* : ${linkp[0].views} 
+└──────────────` 
+ Fg.send2ButtonLoc(from, img, music, `${msg.pfo} *${prefix}play2*\n`, '⎙ MP3', `${prefix}fgmp3 ${linkp[0].url}`, '⎙ MP4', `${prefix}fgmp4 ${linkp[0].url}`)
+ break
+    
+   }
+   
+   
         //-- chatbot // establece como quieras
 if(!isCmd && isChatbot === true){
  // if(!mek.isBaileys) return
