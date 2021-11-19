@@ -170,6 +170,58 @@ const delPremium = (id) => {
  * Verifique los datos de usuario premium en la base de datos
  * @param { string } id 
  */
+ 
+ /**
+ * Verifique los datos del comando de voz del usuario en la base de datos
+ * @param { string } id 
+ */
+const cekVoiceCommand = (id) => {
+  let position = false;
+  Object.keys(User).forEach((i) => {
+    if (User[i].id === id) {
+      position = i;
+    }
+  });
+  if (position !== false) {
+    return User[position].voiceCommand;
+    }
+};
+
+
+/**
+ * cambiar el estado del usuario del comando de voz a la base de datos
+ * @param { string } id
+*/
+const addVoiceCommand = (id) => {
+  let position = false;
+  Object.keys(User).forEach((i) => {
+    if (User[i].id === id) {
+      position = i;
+    }
+  });
+  if (position !== false) {
+    User[position].voiceCommand = true;
+    fs.writeFileSync('./database/user.json', JSON.stringify(User, null, "\t"));
+  }
+};
+
+/**
+ * cambiar el estado del usuario del comando de voz a la base de datos
+ * @param { string } id
+*/
+const delVoiceCommand = (id) => {
+  let position = false;
+  Object.keys(User).forEach((i) => {
+    if (User[i].id === id) {
+      position = i;
+    }
+  });
+  if (position !== false) {
+    User[position].voiceCommand = false;
+    fs.writeFileSync('./database/user.json', JSON.stringify(User, null, "\t"));
+  }
+};
+
 const cekChatbot = (id) => {
   let position = false;
   Object.keys(User).forEach((i) => {
@@ -532,6 +584,9 @@ module.exports = {
   addChatbot,
   delChatbot,
   cekChatbot,
+  cekVoiceCommand,
+  addVoiceCommand,
+  delVoiceCommand,
   addAfk,
   delAfk,
   cekAfk,
