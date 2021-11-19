@@ -450,7 +450,6 @@ ${msg.hi} *${pushname}* ${ucapanWaktu}
     
 ▷ *${msg.lvl}* : ${isLevel}
 ▷ *Premium* : ${prem}
-▷ *Prefix* : ${modepref}
 ${readMore}
 ${menu(prefix)} 
 `
@@ -468,9 +467,26 @@ https://chat.whatsapp.com/G5sXrkhJ0pb0Tu8nhWLaFK
 
 ▢ ${msg.gp} 2
 https://chat.whatsapp.com/CDUqNRu5Kh5KY5uqQI0BKE
+
+▢ ${msg.gp} 3
+https://chat.whatsapp.com/FSVDTytQxnTIPx8t8wBWeM
+
+▢ *YouTube*
+• https://www.youtube.com/fg98f
 `
 m.reply(gps)
 break 
+
+case 'donate':
+case 'donar':
+ m.reply(`≡ *DONACION*
+puedes donar si quieres ayudar a mantener el bot activo
+
+▢ *PayPal*
+• *Link :* https://tinyurl.com/PayPal-fg
+
+_Al donar consigues_  *Premium* `) 
+break
  
   case 'ping':
     const timestamp = speed();
@@ -553,7 +569,7 @@ number = '59172945992@s.whatsapp.net'
 *≡ SCRIPT*
 ▢ Git : ${package.homepage} 
 ` 
-  m.reply(teks)
+Fg.send2Button(from, teks, '*_© FG98 DyLux_*', `ꨄ︎ Apoyar`, `${prefix}donate`, `⌬ ${msg.gp}s`, `${prefix}grupos`)
    break
    
     case 'nameninja':
@@ -1607,7 +1623,8 @@ Fg.groupSettingChange(from, GroupSettingChange.messageSend, true)
     }
     break 
     
-    case 'voicecommand':
+    /*case 'voicecommand':
+    case 'voicecmd':
     if(!isPremium && !isOwner) return m.reply(msg.premium)
    // if(isGroup) return m.reply(msg.private)
     if(!value) return m.reply(msg.OnorOff)
@@ -1622,7 +1639,7 @@ Fg.groupSettingChange(from, GroupSettingChange.messageSend, true)
     } else {
       m.reply(msg.OnorOff)
     }
-    break
+    break*/
     
 
   case 'q': 
@@ -1987,7 +2004,7 @@ case 'simi':
 case 'bot':
 		 if (args.length < 1) return m.reply(`${msg.hi} _*${pushname}*_ ${msg.simn} *${prefix + command}* ${msg.simmsg} ${prefix + command} ${msg.hi} bot`)
 		result = await fetchJson(`https://api.simsimi.net/v2/?text=${value}&lc=${cekBahasa(who)}`, {method: 'get'})
-        m.reply(result.success.replace('simsimi', 'FG98').replace('Simsimi', 'FG').replace('simi', 'FG').replace('Simi', 'FG').replace('sim', 'FG'))
+        m.reply(result.success.replace('simsimi', 'DyLux').replace('Simsimi', 'DyLux').replace('simi', 'DyLux').replace('Simi', 'DyLux'))
                      break
  case 'suit':
  case 'ppt':
@@ -2177,7 +2194,7 @@ if(!isCmd && isChatbot === true){
  // if(!isPremium) return
   if(m.mtype == 'stickerMessage') return
   result = await fetchJson(`https://api.simsimi.net/v2/?text=${budy}&lc=${cekBahasa(who)}`, {method: 'get'})
-  m.reply(result.success.replace('simsimi', 'FG98').replace('Simsimi', 'FG').replace('simi', 'FG').replace('Simi', 'FG').replace('sim', 'FG'))
+  m.reply(result.success.replace('simsimi', 'DyLux').replace('Simsimi', 'DyLux').replace('simi', 'DyLux').replace('Simi', 'DyLux'))
 }
 
 // antiview once
