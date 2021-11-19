@@ -2142,8 +2142,8 @@ let jids = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.send
 └──────────────` 
  Fg.send2ButtonLoc(from, img, music, `${msg.pfo} *${prefix}play2*\n`, '⎙ MP3', `${prefix}fgmp3 ${linkp[0].url}`, '⎙ MP4', `${prefix}fgmp4 ${linkp[0].url}`)
  break
-    
-   }
+    default:
+}
    
    
         //-- chatbot // establece como quieras
