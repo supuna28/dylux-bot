@@ -3,11 +3,12 @@
 		"59172945992@s.whatsapp.net", "59173855380@s.whatsapp.net" 
 	],
 	"nameB": "DyLux-Bot", 
-	"author": "DyLux",
+	"author": "Dylux",
 	"packname": " @fg98._",
 	"wm": "Sígueme en Instagram\nhttps://www.instagram.com/fg98._",
 	"gameTime": 30000,
 	"poinGame": 100,
 	"poinDefect": 500,
-	"totalcommand": 1
+	"totalcommand": 1, 
+	"hujanApi": " " 
 }
