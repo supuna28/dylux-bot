@@ -1986,9 +1986,8 @@ Fg.send2ButtonLoc(from, welm, capt, 'Sígueme en Instagram\nhttps://www.instagra
 case 'simi':
 case 'bot':
 		 if (args.length < 1) return m.reply(`${msg.hi} _*${pushname}*_ ${msg.simn} *${prefix + command}* ${msg.simmsg} ${prefix + command} ${msg.hi} bot`)
-		anu = await fetchJson(`https://api.simsimi.net/v2/?text=${value}&lc=${cekBahasa(who)}`)
-                     simfg = (`${anu.success}`)      
-                     m.reply(simfg)
+		result = await fetchJson(`https://api.simsimi.net/v2/?text=${value}&lc=${cekBahasa(who)}`, {method: 'get'})
+        m.reply(result.success.replace('simsimi', 'FG98').replace('Simsimi', 'FG').replace('simi', 'FG').replace('Simi', 'FG').replace('sim', 'FG'))
                      break
  case 'suit':
  case 'ppt':
@@ -2038,10 +2037,10 @@ case 'bot':
     
     
   
-  /*case 'say':
+  case 'say':
     if(!value) return m.reply(msg.notext)
     Fg.sendMessage(from, value, text)
-    break*/
+    break
    
 //---
   default:
@@ -2127,21 +2126,45 @@ let jids = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.send
     
     switch(VoiceCommand) {
     	
-    case 'play': 
+    case 'fgmp3':
+   if(!value) return m.reply(msg.nolink('youtube'));
+   if(!isLinkyt(value)) return m.reply('⚠️ Link invalido');
+   m.reply(msg.wait)
+   resp = await fgx.yta(value)
+   buff = await getBuffer(resp.link)
+   if (!buff) return m.reply('⚠️ Error')
+   if(Number(resp.size.split(' MB')[0]) >= 99.00) {
+     axios.get(`https://tinyurl.com/api-create.php?url=${resp.link}`).then((G) => {
+     return m.reply(msg.oversize + G.data)
+     })
+   } else {
+     img = await getBuffer(resp.thumb)
+     capt = `▢ ${msg.calidad} : ${resp.quality}
+▢ ${msg.tamaño} : ${resp.size}`
+     Fg.adReplyAudio(from, buff, document, resp.judul, capt, img, value, mek)
+   }
+	break 
+ case 'play': 
    if (!valueVn) return
    url = await yts(valueVn);
-   linkp = url.all 
-   if(!linkp) return ('Error')
- // img = await getBuffer(linkp[0].image)
- img = await (await fetch('https://i.ibb.co/CnHx2Fr/fgmy.jpg')).buffer()
-   music = `≡ *FG MUSIC*
-┌──────────────
-▢ *${msg.titlp}*  : ${linkp[0].title}
-▢ *${msg.timp}* : ${linkp[0].timestamp}
-▢ *${msg.viep}* : ${linkp[0].views} 
-└──────────────` 
- Fg.send2ButtonLoc(from, img, music, `${msg.pfo} *${prefix}play2*\n`, '⎙ MP3', `${prefix}fgmp3 ${linkp[0].url}`, '⎙ MP4', `${prefix}fgmp4 ${linkp[0].url}`)
- break
+   link = url.all 
+   if(!link) return ('⚠️ Error')
+   m.reply(msg.wait)
+   goo = await fgx.yta(link[0].url)
+   buff = await getBuffer(goo.link)
+   if (!buff) return m.reply('⚠️ Error')
+   if(Number(goo.size.split(' MB')[0]) >= 99.00) {
+     axios.get(`https://tinyurl.com/api-create.php?url=${goo.link}`).then((G) => {
+     return m.reply(msg.oversize + G.data)
+     })
+   } else {
+     img = await getBuffer(goo.thumb)
+     capt = `▢ ${msg.calidad} : ${goo.quality}
+▢ ${msg.tamaño} : ${goo.size}`
+     await Fg.adReplyAudio(from, buff, document, goo.judul, capt, img, link[0].url, mek)
+               }
+	break
+ 
     default:
 }
 } 
@@ -2154,7 +2177,7 @@ if(!isCmd && isChatbot === true){
  // if(!isPremium) return
   if(m.mtype == 'stickerMessage') return
   result = await fetchJson(`https://api.simsimi.net/v2/?text=${budy}&lc=${cekBahasa(who)}`, {method: 'get'})
-  m.reply(result.success.replace('simsimi', 'FG98').replace('Simsimi', 'fg').replace('simi', 'Fg').replace('Simi', 'Fg').replace('sim', 'fg'))
+  m.reply(result.success.replace('simsimi', 'FG98').replace('Simsimi', 'FG').replace('simi', 'FG').replace('Simi', 'FG').replace('sim', 'FG'))
 }
 
 // antiview once
