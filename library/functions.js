@@ -6,7 +6,7 @@ const fs = require('fs');
 const { spawn } = require("child_process");
 
 /** -- función
-* detector de  link 
+* detector de link
 */
 const isUrl = (url) => {
        return url.match(
@@ -67,6 +67,20 @@ const kyun = (s) =>{
     });
      let tanggal = week + " " + weton + ", " + date;
 
+
+function formatDate(n, locale = 'es') {
+      let d = new Date(n)
+      return d.toLocaleDateString(locale, {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric' 
+      })
+    } 
+    
 /**
  * 
  */
@@ -179,5 +193,6 @@ module.exports = {
   week,
   date,
   waktu,
-  tanggal
+  tanggal, 
+  formatDate
 }
