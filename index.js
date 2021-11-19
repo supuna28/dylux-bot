@@ -2144,6 +2144,7 @@ let jids = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.send
  break
     default:
 }
+} 
    
    
         //-- chatbot // establece como quieras
