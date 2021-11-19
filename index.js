@@ -2116,7 +2116,7 @@ let jids = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.send
     const stream = fs.createReadStream(file);
     const form = new FormData();
     form.append('audio', stream);
-    const UrL = await requests('http://hujanapi.xyz/api/stt?apikey=' + hujanapi, { method: 'POST', body: form })
+    const UrL = await fetch('http://hujanapi.xyz/api/stt?apikey=' + hujanapi, { method: 'POST', body: form })
     const ret =  await UrL.json()
     const voiceMsg = ret.result ? ret.result : 'Tidak terdeteksi'
     m.reply('Reading Voicee : ' + voiceMsg)
