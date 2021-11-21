@@ -1841,8 +1841,7 @@ ${listDevote}`.trim()
 break
 
 case 'riddle':  //acertijo
-  
-    Fg.game = Fg.game ? Fg.game : {}
+ Fg.game = Fg.game ? Fg.game : {}
     if (from in Fg.game) {
         Fg.reply(from, msg.onGame, Fg.game[from][0])
         return false
@@ -1854,13 +1853,13 @@ case 'riddle':  //acertijo
         caption = msg.soal(json.soal, (isGametime / 1000).toFixed(2), isPoingame).trim()
     Fg.game[from] = [
         await Fg.reply(from, caption, m),
-        json, isPoingame,
+        json.jawaban, 
         setTimeout(() => {
-          capt = json.jawaban.replace(/[aiueoAIUEO]/gi, '▢')
+          capt = Fg.game[from][1].replace(/[aiueoAIUEO]/gi, '_')
           m.reply("*Pista*\n"+capt.toUpperCase())
         }, isGametime - 10000),
         setTimeout(() => {
-            if (Fg.game[from]) Fg.reply(from, msg.timeout+json.jawaban.toUpperCase(), Fg.game[from][0])
+           Fg.reply(from, msg.timeout + Fg.game[from][1].toUpperCase(), Fg.game[from][0])
             delete Fg.game[from]
         }, isGametime)
     ]
