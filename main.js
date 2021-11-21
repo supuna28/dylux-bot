@@ -129,7 +129,7 @@ Fg.on('group-participants-update', async (anu) => {
     let username = Fg.getName(num)
     capt = `≡ *DEMOTE DETECTED*
     
-*NUEVO ADMIN*
+*ADMIN DEGRADADO*
 ┌──────────────
 ▢ *Nombre* : ${username}
 ▢ *Numero* : @${num.split('@')[0]}
