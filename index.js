@@ -1840,7 +1840,7 @@ ${listDevote}`.trim()
     await Fg.sendButton(from, caption, `${msg.foll}`, `🚫 ${msg.dlte}`, `${prefix}delvote`, false, { contextInfo: { mentionedJid: Fg.parseMention(caption) } })
 break
 
-case 'riddle':  //acertijo
+case 'asahotak':  //acertijo
  Fg.game = Fg.game ? Fg.game : {}
     if (from in Fg.game) {
         Fg.reply(from, msg.onGame, Fg.game[from][0])
