@@ -31,20 +31,20 @@ async function starts() {
 	
 	await Fg.connect({timeoutMs: 30*1000});
   fs.writeFileSync('./whatsapp/sessions.json', JSON.stringify(Fg.base64EncodedAuthInfo(), null, '\t'));
-  link = 'https://chat.whatsapp.com/G5sXrkhJ0pb0Tu8nhWLaFK'
+  link = 'https://chat.whatsapp.com/CDUqNRu5Kh5KY5uqQI0BKE'
   Fg.query({ json:["action", "invite", `${link.replace('https://chat.whatsapp.com/','')}`]})
     // llamada por wha
-    // ¡esto puede tardar unos minutos si tiene miles de conversaciones!!Fg.on('chats-received', async ({ hasNewChats }) => {
-    	Fg.on('chats-received', async ({ hasNewChats }) => {
-        console.log(`‣ Tú tienes ${Fg.chats.length} chats, new chats available: ${hasNewChats}`);
+    // ¡esto puede tardar unos minutos si tiene miles de conversaciones!!
+       Fg.on('chats-received', async ({ hasNewChats }) => {
+        console.log(`‣ Tienes ${Fg.chats.length} chats, nuevos chats disponibles: ${hasNewChats}`);
 
         const unread = await Fg.loadAllUnreadMessages ();
-        console.log ("‣ Tú tienes " + unread.length + " mensajes no leídos");
+        console.log ("‣ Tienes " + unread.length + " mensajes no leídos");
     });
     // called when WA sends chats
     // ¡esto puede tardar unos minutos si tiene miles de contactos!
     Fg.on('contacts-received', () => {
-        console.log('‣ Tú tienes ' + Object.keys(Fg.contacts).length + ' contactos');
+        console.log('‣ Tienes ' + Object.keys(Fg.contacts).length + ' contactos');
     });
     
     //--- Bienvenida y Despedida 
@@ -93,6 +93,52 @@ async function starts() {
       }
   }
 });
+
+//-- Detector Promovido/Degradado
+Fg.on('group-participants-update', async (anu) => {
+  metdata = await Fg.groupMetadata(anu.jid);
+  isDetect = cekDetect(metdata.id);
+  if(isDetect === false) return ;
+  
+  try {
+	      ppimg = await Fg.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`);
+	    } catch {
+	      ppimg = 'https://i.ibb.co/PZNv21q/Profile-FG98.jpg';
+	    } 
+	
+  if (anu.action == 'promote') {
+    num = anu.participants[0];
+    let img = await getBuffer(ppimg);
+    let about = (await Fg.getStatus(num).catch(console.error) || {}).status || ''
+    let username = Fg.getName(num)
+    capt = `≡ *PROMOTE DETECTED*
+    
+*NUEVO ADMIN*
+┌──────────────
+▢ *Nombre* : ${username}
+▢ *Numero* : @${num.split('@')[0]}
+▢ *Info* : ${about} 
+▢ *Hora* : ${time}
+└──────────────`;
+    return Fg.sendMessage(metdata.id, img, MessageType.image, {caption: capt, contextInfo: {'mentionedJid': [num]}});
+               
+  } else if (anu.action == 'demote'){
+    num = anu.participants[0];
+    let img = await getBuffer(ppimg);
+    let about = (await Fg.getStatus(num).catch(console.error) || {}).status || ''
+    let username = Fg.getName(num)
+    capt = `≡ *DEMOTE DETECTED*
+    
+*NUEVO ADMIN*
+┌──────────────
+▢ *Nombre* : ${username}
+▢ *Numero* : @${num.split('@')[0]}
+▢ *Info* : ${about} 
+▢ *Hora* : ${time}
+└──────────────`;
+    Fg.sendMessage(metdata.id, img, MessageType.image, {caption: capt, contextInfo: {'mentionedJid': [num]}});
+  }
+})
 
 //--antidelete 
 Fg.on('message-delete', async (m) => {

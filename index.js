@@ -1534,6 +1534,7 @@ Fg.groupSettingChange(from, GroupSettingChange.messageSend, true)
     break
     
     case 'detect':
+    case 'detector':
     if(!isGroup) return m.reply(msg.group)
     if(!isAdmins && !isOwner && !isBot) return m.reply(msg.admin)
     if(!isBotAdmins) return m.reply(msg.botadmin)
@@ -1840,7 +1841,7 @@ ${listDevote}`.trim()
     await Fg.sendButton(from, caption, `${msg.foll}`, `🚫 ${msg.dlte}`, `${prefix}delvote`, false, { contextInfo: { mentionedJid: Fg.parseMention(caption) } })
 break
 
-case 'asahotak':  //acertijo
+case 'riddle':  //acertijo
  Fg.game = Fg.game ? Fg.game : {}
     if (from in Fg.game) {
         Fg.reply(from, msg.onGame, Fg.game[from][0])
