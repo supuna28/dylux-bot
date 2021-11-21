@@ -1,5 +1,5 @@
 [
-  { "author" : "FG98",
+  { "author" : "FG98", 
     "index": 1,
     "soal": " Animales como las lagartijas que pueden cambiar el color de su piel?",
     "jawaban": "Camaleón"
