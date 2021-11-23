@@ -188,7 +188,7 @@ module.exports = Fg = async (Fg, mek) => {
     mek = mek.messages.all()[0];
     if (!mek.message) return;
     //--Bot self
-   if(mek.key.fromMe) return; // Eliminalo para que el Bot sea self
+  // if(mek.key.fromMe) return; // Eliminalo para que el Bot sea self
    
     if (mek.key && mek.key.remoteJid == 'status@broadcast') return;
     mek.message = (Object.keys(mek.message)[0] === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
@@ -2063,7 +2063,7 @@ case 'bot':
   default:
   
     if (budy.startsWith('$')){
-      if (!mek.key.fromMe && !isOwner && !isBot) return;
+      if (!isOwner && !isBot) return;
       qur = budy.slice(2);
       exec(qur, (err, stdout) => {
         if (err) return m.reply(`‣  ${err}`);
@@ -2074,7 +2074,7 @@ case 'bot':
           }
           
     if (budy.startsWith('>')){
-      if (!mek.key.fromMe && !isOwner && !isBot) return;
+      if (!isOwner && !isBot) return;
       try {
         Fg.sendMessage(from, "‣ "+JSON.stringify(eval(budy.slice(2)),null,'\t'), text, {quoted: mek});
         } catch(err) {
