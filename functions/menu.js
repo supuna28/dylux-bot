@@ -39,6 +39,7 @@ exports.menu = (v) => {
 ▢ ${v}tomp3
 ▢ ${v}toav
 ▢ ${v}q
+▢ ${v}say <text>
 └──────────────
 ┌─⊷ *EDUCACIÓN* 
 ▢ ${v}translate <lang><text>
