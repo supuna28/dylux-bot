@@ -9,6 +9,8 @@ exports.menu = (v) => {
 ▢ ${v}owner
 ▢ ${v}join <link>
 ▢ ${v}report <text>
+▢ ${v}listprem
+▢ ${v}listban
 └──────────────
 ≡ List Menu
 ┌─⊷ *FUN* 
