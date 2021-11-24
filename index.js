@@ -1338,6 +1338,19 @@ https://chat.whatsapp.com/${linkgp}`
     m.reply(msg.done)
     break
     
+    case 'listpremium':
+    case 'listprem':
+ //  if(!isOwner) return m.reply(msg.owner)
+   m.reply(msg.wait)
+   capt = '*≡ List Premium*'
+   for (var u of User) {
+    if (u.premium === true) {
+      capt += '\nId : @' + u.id.split('@')[0]
+    }
+  }
+  m.reply(capt)
+  break
+    
     case 'banned':
     case 'ban':
     if(!isGroup) return m.reply(msg.group)
@@ -1361,6 +1374,19 @@ https://chat.whatsapp.com/${linkgp}`
     await delBanned(dia)
     m.reply(msg.done)
     break
+    
+    case 'listban':
+ case 'listbanned':
+   if(!isOwner) return m.reply(msg.owner)
+   m.reply(msg.wait)
+   capt = '*≡ Lista de Baneados*'
+   for (var b of User) {
+    if (b.banned === true) {
+      capt += '\nId : @' + b.id.split('@')[0]
+    }
+  }
+  m.reply(capt)
+  break
     
     case 'group':
 					if(!isGroup) return m.reply(msg.group)
@@ -2004,7 +2030,7 @@ case 'simi':
 case 'bot':
 		 if (args.length < 1) return m.reply(`${msg.hi} _*${pushname}*_ ${msg.simn} *${prefix + command}* ${msg.simmsg} ${prefix + command} ${msg.hi} bot`)
 		result = await fetchJson(`https://api.simsimi.net/v2/?text=${value}&lc=${cekBahasa(who)}`, {method: 'get'})
-        m.reply(result.success.replace('simsimi', 'DyLux').replace('Simsimi', 'DyLux').replace('simi', 'DyLux').replace('Simi', 'DyLux'))
+        m.reply(result.success.replace('simsimi', 'DyLux').replace('Simsimi', 'DyLux'))
                      break
  case 'suit':
  case 'ppt':
@@ -2052,8 +2078,6 @@ case 'bot':
     }
     break
     
-    
-  
   case 'say':
     if(!value) return m.reply(msg.notext)
     Fg.sendMessage(from, value, text)
