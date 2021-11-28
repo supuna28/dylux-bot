@@ -2082,6 +2082,38 @@ case 'bot':
     if(!value) return m.reply(msg.notext)
     Fg.sendMessage(from, value, text)
     break
+    
+    case 'test':
+po1 = Fg.prepareMessageFromContent(from, {
+  "listMessage":  {
+"title": "*Lista Comandos*",
+"description": `No se elige o que te jodan`,
+"buttonText": "Click Aqui",
+"listType": "SINGLE_SELECT",
+"sections": [
+{
+"rows": [
+{
+"title": "Menu",
+"description": "algo jsjs",
+"rowId": `${prefix}menu`
+},
+{
+"title": "Perfil",
+"description": " ",
+"rowId": `${prefix}profile`
+},
+{
+"title": "ping",
+"description": " ",
+"rowId": `${prefix}ping`
+}
+
+//--
+]}]}}, {})
+Fg.relayWAMessage(po1, {waitForAck: true})
+
+break
    
 //---
   default:
