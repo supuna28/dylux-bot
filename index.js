@@ -1191,9 +1191,8 @@ break
      img = await getBuffer(resp.thumb)
      capt = `▢ ${msg.calidad} : ${resp.quality}
 ▢ ${msg.tamaño} : ${resp.size}`
-     //Fg.adReplyAudio(from, buff, document, resp.judul, capt, img, value, mek)
-     Fg.adReplyAudio(from, buff, audio, resp.judul, capt, img, value, mek)
-   }
+     Fg.adReplyAudio(from, buff, document, resp.judul, capt, img, value, mek)
+       }
 	break
 	
 	case 'ytmp4': 
@@ -1212,9 +1211,8 @@ break
      img = await getBuffer(resv.thumb)
      capt = `▢ ${msg.calidad} : ${resv.quality}
 ▢ ${msg.tamaño} : ${resv.size}`
-     //await Fg.adReplyVideo(from, buff, document, resv.judul, capt, img, value, mek)
-     await Fg.adReplyVideo(from, buff, video, resv.judul, capt, img, value, mek)
-   }
+     await Fg.adReplyVideo(from, buff, document, resv.judul, capt, img, value, mek)
+      }
 	break
 
    
