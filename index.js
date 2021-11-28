@@ -1212,7 +1212,8 @@ break
      img = await getBuffer(resv.thumb)
      capt = `▢ ${msg.calidad} : ${resv.quality}
 ▢ ${msg.tamaño} : ${resv.size}`
-     await Fg.adReplyVideo(from, buff, document, resv.judul, capt, img, value, mek)
+     //await Fg.adReplyVideo(from, buff, document, resv.judul, capt, img, value, mek)
+     await Fg.adReplyVideo(from, buff, video, resv.judul, capt, img, value, mek)
    }
 	break
 
