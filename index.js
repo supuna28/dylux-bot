@@ -741,8 +741,8 @@ case "s":
         .message.extendedTextMessage.contextInfo;
       media = await Fg.downloadAndSaveMediaMessage(encmedia);
         anu = args.join(" ").split("|");
-        a = anu[0] !== "" ? anu[0] : isPackname;
-        b = typeof anu[1] !== "undefined" ? anu[1] : isAuthor;
+        a = anu[0] !== "" ? anu[0] : isAuthor;
+        b = typeof anu[1] !== "undefined" ? anu[1] : isPackname;
         createExif(a, b);
         modStick(media, Fg, mek, from);
         break 
@@ -1114,7 +1114,7 @@ break
 ▢ *${msg.timp}* : ${linkp[0].timestamp}
 ▢ *${msg.viep}* : ${linkp[0].views} 
 └──────────────` 
- Fg.send2ButtonLoc(from, img, music, `${msg.pfo} *${prefix}play2*\n`, '⎙ MP3', `${prefix}fgmp3 ${linkp[0].url}`, '⎙ MP4', `${prefix}fgmp4 ${linkp[0].url}`)
+ Fg.send2ButtonLoc(from, img, music, `${msg.pfo} *${prefix}play2*\n`, '🎶 MP3', `${prefix}fgmp3 ${linkp[0].url}`, '🎥 MP4', `${prefix}fgmp4 ${linkp[0].url}`)
  break
    
     case 'play2': 
@@ -1191,7 +1191,8 @@ break
      img = await getBuffer(resp.thumb)
      capt = `▢ ${msg.calidad} : ${resp.quality}
 ▢ ${msg.tamaño} : ${resp.size}`
-     Fg.adReplyAudio(from, buff, document, resp.judul, capt, img, value, mek)
+     //Fg.adReplyAudio(from, buff, document, resp.judul, capt, img, value, mek)
+     Fg.adReplyAudio(from, buff, audio, resp.judul, capt, img, value, mek)
    }
 	break
 	
@@ -2030,7 +2031,7 @@ case 'simi':
 case 'bot':
 		 if (args.length < 1) return m.reply(`${msg.hi} _*${pushname}*_ ${msg.simn} *${prefix + command}* ${msg.simmsg} ${prefix + command} ${msg.hi} bot`)
 		result = await fetchJson(`https://api.simsimi.net/v2/?text=${value}&lc=${cekBahasa(who)}`, {method: 'get'})
-        m.reply(result.success.replace('simsimi', 'DyLux').replace('Simsimi', 'DyLux'))
+        m.reply(result.success.replace('simsimi', 'DyLux').replace('Simsimi', 'DyLux').replace('sim simi', 'DyLux'))
                      break
  case 'suit':
  case 'ppt':
