@@ -127,6 +127,7 @@ exports.Pbahasa = `✳️ Pilih bahasa yang ingin Anda gunakan
 - es (Spanish) 
 - id (Indonesia) 
 - en (English)
+- pt (Portugués)
 
 📌 Contoh : */language en*`;
 exports.nobahasa = `Bahasa tidak tersedia
@@ -135,6 +136,7 @@ exports.nobahasa = `Bahasa tidak tersedia
 - es (Spanish) 
 - id (Indonesia) 
 - en (English)
+- pt (Portugués)
 
 📌 Contoh : */language en*`;
 

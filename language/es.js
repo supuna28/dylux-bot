@@ -127,6 +127,7 @@ exports.Pbahasa = `✳️ Seleccione el idioma que desea utilizar
 - es (Spanish) 
 - id (Indonesia) 
 - en (English)
+- pt (Portugués)
 
 📌 Ejemplo : */language en*`;
 exports.nobahasa = `Idioma no disponible
@@ -135,6 +136,7 @@ exports.nobahasa = `Idioma no disponible
 - es (Spanish) 
 - id (Indonesia) 
 - en (English)
+- pt (Portugués)
 
 📌 Ejemplo : */language en*`;
 
@@ -211,7 +213,7 @@ exports.setbyedone = (value, fungsi) => {
 };
 //--
 exports.default = (value) => {
-  return value + ' Vouelve a la configuración inicial';
+  return value + ' Vuelve a la configuración inicial';
 };
 
 exports.main = (value) => {
@@ -235,8 +237,8 @@ exports.soal = (text1, text2, text3) => {
 ⏳ *Tiempo*
 ${text2}
 
-*PUNTOS*
-${text3}
+*RECOMPENSA*
+${text3} Coins
 
 Responde este mensaje para responder
 La pista de respuesta aparece en los últimos 10 segundos.`;
