@@ -999,7 +999,8 @@ break
    bahasa = {
      id: 'indonesia',
      en: 'english', 
-     es: 'español'
+     es: 'español', 
+     pt: 'portugués' 
    }
    var lang = to || 'es' 
    if (!bahasa[lang]) return m.reply('⚠️ Lenguaje no soportado : ' + lang);
