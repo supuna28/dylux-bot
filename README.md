@@ -45,6 +45,7 @@ Multi-idioma para cada usuario, lo que significa que el usuario puede elegir el 
 - [x] Spanish
 - [x] Indonesia
 - [x] English
+- [x] Portugués
 - [ ] Idiomas que vendrán después
 
 Puedes abrir el idioma  [Aqui](https://github.com/FG98F/dylux-bot/tree/main/language)
