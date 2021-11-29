@@ -152,7 +152,7 @@ const {
 
 const { msgFilter } = require('./functions/antispam')
 const { menu } = require('./functions/menu'); // 
-const { espa, ind, eng, } = require('./language/index');
+const { espa, ind, eng, port } = require('./language/index');
 
 // funciones de  ./functions/setting-bot
 let ownerNumber = st.ownerNumber; 
@@ -286,6 +286,8 @@ module.exports = Fg = async (Fg, mek) => {
        msg = eng;
      } else if (msg === "id") {
        msg = ind;
+     } else if (msg === "pt") {
+       msg = port;
      } else {
        msg = espa;
      }
@@ -502,13 +504,16 @@ case 'lang':
     if(!value) return m.reply(msg.Pbahasa)
     if (value.toLowerCase() === "es") {
       await addBahasa(sender, "es")
-      m.reply("✅ Idioma cambiado a Español ")
+      m.reply("✅ Español Seleccionado\nAhora el bot responderá a su mensaje en Español")
     } else if (value.toLowerCase() === "id") {
       await addBahasa(sender, "id")
       m.reply("✅ Bahasa Indonesia terpilih\nSekarang bot akan membalas pesanmu dengan bahasa Indonesia")
     } else if (value.toLowerCase() === "en") {
       await addBahasa(sender, "en")
       m.reply("✅ Selected English\nNow the bot will reply to your message in English")
+     } else if (value.toLowerCase() === "pt") {
+      await addBahasa(sender, "pt")
+      m.reply("✅ Português selecionados\nAgora o bot vai responder a sua mensagem em Português")
     } else {
       m.reply(msg.nobahasa)
     }
