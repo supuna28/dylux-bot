@@ -1458,7 +1458,7 @@ Fg.groupSettingChange(from, GroupSettingChange.messageSend, true)
     case 'kick':
     if(!isGroup) return m.reply(msg.group)
     if(!isBotAdmins) return m.reply(msg.botadmin)
-    if(!isOwner) return m.reply(msg.owner)
+    if(!isAdmins && !isOwner && !isBot) return m.reply(msg.admin)
     if(!dia) return m.reply(msg.notag)
     //if(dia === isAdmins) return m.reply(msg.isadmin)
     anu = "@"+dia.split('@')[0]
