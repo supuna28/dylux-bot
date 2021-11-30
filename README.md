@@ -37,7 +37,7 @@ Para resultados perfectos debes tener la versión original de la aplicación Wha
 En caso de duda, antes de instalar dylux-bot, pruebe el bot aquí primero
 
 <p>
-<a href="https://chat.whatsapp.com/G5sXrkhJ0pb0Tu8nhWLaFK" target="blank"><img src="https://img.shields.io/badge/DyLux Bot-30302f?style=flat&logo=whatsapp" /></a>
+<a href="https://instabio.cc/fg98ff" target="blank"><img src="https://img.shields.io/badge/DyLux Bot-30302f?style=flat&logo=whatsapp" /></a>
 </p>
 
 Multi-idioma para cada usuario, lo que significa que el usuario puede elegir el idioma que quiere usar
@@ -85,7 +85,7 @@ Puedes abrir el menú [aquí](https://github.com/FG98F/dylux-bot/blob/main/funct
 ### Grupo de WhatsApp 
 
 <p>
-<a href="https://chat.whatsapp.com/G5sXrkhJ0pb0Tu8nhWLaFK" target="blank"><img src="https://img.shields.io/badge/DyLux Bot-30302f?style=flat&logo=whatsapp" /></a>
+<a href="https://instabio.cc/fg98ff" target="blank"><img src="https://img.shields.io/badge/DyLux Bot-30302f?style=flat&logo=whatsapp" /></a>
 </p>
 
 ### Mis Contactos
