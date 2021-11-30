@@ -1550,7 +1550,7 @@ Fg.groupSettingChange(from, GroupSettingChange.messageSend, true)
   case 'bienvenida':
     if(!isGroup) return m.reply(msg.group)
     if(!isAdmins && !isOwner && !isBot) return m.reply(msg.admin)
-    if(!isBotAdmins) return m.reply(msg.botadmin)
+    //if(!isBotAdmins) return m.reply(msg.botadmin)
     if(!value) return m.reply(msg.OnorOff)
     if (value.toLowerCase() === "on") {
       if(isWelcome === true ) return m.reply(msg.Thison(command.toUpperCase()))
