@@ -11,30 +11,30 @@ exports.menu = (v) => {
 ▢ ${v}report <text>
 ▢ ${v}listprem
 ▢ ${v}listban
-└──────────────
+└─────────────
 ≡ List Menu
 ┌─⊷ *FUN* 
 ▢ ${v}fake text|@user|text
 ▢ ${v}pregunta
-└──────────────
+└─────────────
 ┌─⊷ *GAMES* 
 ▢ ${v}verdad
 ▢ ${v}reto
 ▢ ${v}ppt
-└──────────────
+└─────────────
 ┌─⊷ *STICKER* 
 ▢ ${v}sticker <nombre>|<autor>
 ▢ ${v}take <nombre>|<autor>
 ▢ ${v}toimg
 ▢ ${v}attp
-└──────────────
+└─────────────
 ┌─⊷ *PICTURE* 
 ▢ ${v}pinterest
 ▢ ${v}imagen
 ▢ ${v}girl
 ▢ ${v}man
 ▢ ${v}wallpaper
-└──────────────
+└─────────────
 ┌─⊷ *TOOLS*
 ├ ${v}afk <razon>
 ▢ ${v}fakethumb
@@ -42,15 +42,15 @@ exports.menu = (v) => {
 ▢ ${v}toav
 ▢ ${v}q
 ▢ ${v}say <text>
-└──────────────
+└─────────────
 ┌─⊷ *EDUCACIÓN* 
 ▢ ${v}translate <lang><text>
-└──────────────
-┌─⊷ *BUSQUEDA* ❳
+└─────────────
+┌─⊷ *BUSQUEDA*
 ▢ ${v}playstore
 ▢ ${v}ytsearch
 ▢ ${v}google
-└──────────────
+└─────────────
 ┌─⊷ *DOWNLOAD* 
 ▢ ${v}play
 ▢ ${v}play2
@@ -61,14 +61,14 @@ exports.menu = (v) => {
 ▢ ${v}tiktok <link>
 ▢ ${v}tiktoknowm <link>
 ▢ ${v}tiktokaudio <link>
-└──────────────
+└─────────────
 ┌─⊷ *TEXT MAKER*
 ▢ ${v}nameninja <text>
 ▢ ${v}typewriter <text>
 ▢ ${v}blackpill <text>
 ▢ ${v}sans <text>
 ▢ ${v}castle <text>
-└──────────────
+└─────────────
 ┌─⊷ *DATABASE* 
 ▢ ${v}addimg <text>
 ▢ ${v}addvid <text>
@@ -79,12 +79,12 @@ exports.menu = (v) => {
 ▢ ${v}getstick <text>
 ▢ ${v}getav <text>
 ▢ ${v}listmedia
-└──────────────
+└─────────────
 ┌─⊷ *VOTING* 
 ▢ ${v}voting <text>
 ▢ ${v}delvote
 ▢ ${v}checkvote
-└──────────────
+└─────────────
 ┌─⊷ *ADMIN* 
 ▢ ${v}setwelcome
 ▢ ${v}seybye
@@ -108,7 +108,7 @@ exports.menu = (v) => {
 ▢ ${v}warn @user
 ▢ ${v}delwarn @user
 ▢ ${v}warns @user
-└──────────────
+└─────────────
 ┌─⊷ *GRUPO*
 ▢ ${v}welcome on/off
 ▢ ${v}antidelete on/off
@@ -118,7 +118,7 @@ exports.menu = (v) => {
 ▢ ${v}infogp
 ▢ ${v}profile
 ▢ ${v}invite <549xxxx> 
-└──────────────
+└─────────────
 ┌─⊷ *OWNER* 
 ▢ ${v}addpremium @user
 ▢ ${v}delpremium @user
@@ -133,5 +133,5 @@ exports.menu = (v) => {
 ▢ ${v}listreport
 ▢ $
 ▢ >
-└──────────────`;
+└─────────────`;
 };
