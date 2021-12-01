@@ -616,15 +616,14 @@ Fg.send2Button(from, teks, '*_© FG98 DyLux_*', `ꨄ︎ Apoyar`, `${prefix}donat
     text2 = value.split("|")[2]
     Fg.fakeReply(from, text1, dia, text2, from)
     break
-    
-    case 'pregunta':
-    if(!value) return m.reply(msg.notext)
-    naon = ["Si","No","En efecto"," Tal vez","No lo se","Quizas","2 dias","Jamas", "Un domingo", "no lo hace", "muy falso"]
-random = naon[Math.floor(Math.random() * (naon.length))]
-preg = `Pregunta : *${value}*
-Respuesta : ${random}`
-m.reply(preg)
-break
+  
+case 'pregunta':
+if(!value) return m.reply(msg.notext)
+prefg = await fetchJson(`https://api.simsimi.net/v2/?text=${value}&lc=${cekBahasa(who)}`, {method: 'get'})
+ m.reply(`≡ *PREGUNTAS*
+ 
+▢ *Pregunta:* ${value}
+▢ *Respuesta :* ${prefg.success}`) 
 
 case 'afk':
    if(!isGroup) return m.reply(msg.group)
